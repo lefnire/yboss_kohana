@@ -7,6 +7,8 @@
 * @mail: fabian [at] dotbrilliance [dot] nl
 */
 
+define('NO_RESULTS', -1);
+
 class Yboss_Core {
 	private $api_key;
 	private $api_url;
@@ -88,6 +90,7 @@ class Yboss_Core {
 		$this->deephits = $obj->deephits;
 		$this->count = $obj->count;
 		
+		if($this->count==0) return NO_RESULTS;
 		if($this->start < $obj->totalhits - 20) $this->next = $this->start + $this->count;
 		if($this->start >= 20) $this->prev = $this->start - $this->count;
 		
